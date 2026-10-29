@@ -1,0 +1,50 @@
+zad 1
+CREATE  TABLE pracownik (
+	-- id_pracownika INT AUTO_INCREMENT PRIMARY KEY,
+    -- imie VARCHAR(40) NOT NULL,
+    -- nazwisko VARCHAR(60) NOT NULL,
+    -- data_urodzenia DATE NOT NULL
+    -- );
+    
+INSERT INTO pracownik(imie,nazwisko,data_urodzenia)
+VALUES ( "ktos", "niewiem", "2030.11.15")  
+   
+UPDATE pracownik
+SET data_urodzenia = "2022.12.5"
+WHERE id_pracownika = 2
+
+DELETE FROM pracownik WHERE id_pracownika = 4;
+
+ZAD 2 
+ 
+CREATE TABLE zadanie (
+	--  id_zadania INT AUTO_INCREMENT PRIMARY KEY,
+     -- nazwa_zadania VARCHAR(150) NOT NULL,
+	 -- priorerytet ENUM("normalny", "wysoki", "niski"),
+     -- opis TEXT,
+     -- id_pracownika INT NULL, 
+     -- FOREIGN KEY (id_pracownika) 
+		-- REFERENCES pracownik(id_pracownika)
+        -- ON DELETE SET NULL
+     -- )
+     
+ALTER TABLE zadanie
+MODIFY priorerytet ENUM("normalny", "wysoki", "niski")
+DEFAULT  "normalny";
+
+INSERT INTO zadanie(id_pracownika, nazwa_zadania, priorerytet)
+VALUES ( "1", "gotowanie", "niski"),
+( "2", "sprzatanie", "wysoki"),
+( "3", "zjadanie", "normalny")
+
+CREATE TABLE projekt (
+id_projektu INT PRIMARY KEY AUTO_INCREMENT,
+nazwa_projektu VARCHAR(150),
+data_rozpoczecia DATE NOT NULL,
+data_zakonczenia DATE
+);
+
+ALTER TABLE projekt 
+ADD menedzer_projektu INT FOREIGN KEY
+FOREIGN KEY (id_pracownika)
+	REFERENCES
